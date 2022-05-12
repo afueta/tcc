@@ -1,0 +1,26 @@
+---
+title: "TCC"
+author: "André Pellizzaro"
+date: "1/26/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+rm(list = ls())
+library(kableExtra)
+library(tidyverse)
+library(readxl)
+library(fst)
+library(vtable)
+```
+
+
+```{r}
+# tabela por ano
+tb_muni <- read_fst("base/HHImunicipio.fst")
+tb_muni[4:14] |> st()
+tb_muni |> st(out = "kable",fit.page = '\\textwidth', group = "UF",col.breaks = 12, group.long = TRUE)
+
+```
+

@@ -1,0 +1,4 @@
+"0","# tabela por ano"
+"0","tb_muni <- read_fst(""base/HHImunicipio.fst"")"
+"0","tb_muni[4:14] |> st()"
+"0","tb_muni |> st(out = ""kable"", group = ""UF"")"
