@@ -26,8 +26,6 @@ mun$id <- substr(mun$`Código Município Completo`,0,6) |> as.numeric()
 municipio <- inner_join(mun,municipio,by=c("id"="cod"))
 
 
-
-
 # nome das subclasses 2.0 CNAE
 subclasse <- read_excel("base/RAIS_estabelecimento_layout2018e2019.xlsx",
                         sheet = "subclasse 2.0", 
@@ -74,6 +72,7 @@ sexo <- read_excel("censo/sexo.xlsx", sheet = "População residente - percen...
                                  "skip", "numeric", "numeric", "numeric"), 
                    skip = 5)
 colnames(sexo) <- c("id","municipio","idade","total","homem","mulher")
+
 a <- sexo |>
   select(id,idade,total)
 a <- spread(a,idade,total, fill= NA)
@@ -86,6 +85,22 @@ for (i in 1:5564) {
 sex <- df
 sex$id <- substr(sex$id,0,6) |> as.numeric()
 
+idade <- read_excel("base/idade.xlsx", col_types = c("text", 
+                                                     "skip", "skip", "numeric", "numeric", 
+                                                     "numeric", "numeric", "numeric", "numeric", 
+                                                     "numeric", "numeric", "numeric", "numeric", 
+                                                     "numeric", "numeric", "numeric", "numeric", 
+                                                     "numeric"))
+
+colnames(idade) <- c("id","i0","i5","i10","i15","i18","i20","i25","i30","i35","i40","i45","i50","i55","i60","i70")
+idade$id <- substr(idade$id,0,6) |> as.numeric()
+
+educacao <- read_excel("base/educacao.xlsx", 
+                       col_types = c("numeric", "skip", "skip", 
+                                     "skip", "numeric", "numeric", "numeric", 
+                                     "skip"), skip = 4)
+colnames(educacao) <- c("id","fundamental","medio","superior")
+educacao$id <- substr(educacao$id,0,6) |> as.numeric()
 
 df <- tb_muni |> select(id=cod,hhi=`2010`)
 df$loghhi <- df$hhi |> log()
@@ -95,46 +110,21 @@ df <- wage |>
   mutate(logwage=log(Total),logwageCLT=log(wageCLT)) |>
   inner_join(df,by="id") |>
   select(id,wage=Total,wageCLT,hhi,loghhi,logwage,logwageCLT)
+
 df <- pop |> 
-  select(id,`conta propria/total`,`CP+sCLT/total`) |>
+  select(id,`conta propria/total`,`CP+sCLT/total`, Total) |>
+  mutate(logpop=log(Total)) |>
   inner_join(df,by="id") |>
-  select(id,wage,logwage,logwageCLT,hhi,loghhi,"Conta Própria" =`conta propria/total`,"Conta Própria + sem CLT" = `CP+sCLT/total`)
+  select(id,wage,logwage,logwageCLT,hhi,loghhi,logpop,"Conta Própria" =`conta propria/total`,"Conta Própria + sem CLT" = `CP+sCLT/total`)
 
 df <- sex |>
   select(id,mulher) |>
   inner_join(df,by="id") |>
-  select(id,wage,logwage,logwageCLT,hhi,loghhi,'Conta Própria','Conta Própria + sem CLT', mulher)
+  select(id,wage,logwage,logwageCLT,hhi,loghhi,logpop,'Conta Própria','Conta Própria + sem CLT', mulher)
+
+
+df <-inner_join(df,idade,by="id")
+df <-inner_join(df,educacao,by="id")
+
 
 write_fst(df,"base.fst")
-
-df<- read_fst("base.fst")
-
-
-
-
-model1 <- lm(logwageCLT ~ loghhi , df)
-model2 <- lm(logwageCLT ~ loghhi + `Conta Própria + sem CLT` , df)
-model3 <- lm(logwageCLT ~ loghhi + `Conta Própria + sem CLT` + loghhi*`Conta Própria + sem CLT` , df)
-summary(model3)
-stargazer(model1,model2,model3)
-
-model1 <- lm(logwage ~ loghhi , df)
-model2 <- lm(logwage ~ loghhi + `Conta Própria + sem CLT` , df)
-model3 <- lm(logwage ~ loghhi + `Conta Própria + sem CLT` + loghhi*`Conta Própria + sem CLT` , df)
-stargazer(model1,model2,model3)
-
-
-
-#homem e mulheres
-#etaria fração
-#escolaridade 
-#log pop
-#idh por municipio
-
-model2 |> summary()
-
-#outside option Heckman e Pages(2000)
-
-stargazer(model1,model2,model3)
-
-
