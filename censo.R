@@ -1,4 +1,6 @@
 rm(list = ls())
+
+basedosdados::set_billing_id("tccusp")
 options(scipen = 999)
 library(kableExtra)
 library(tidyverse)
@@ -9,9 +11,9 @@ library(sf)
 library(geobr)
 library(ggpubr)
 library(stargazer)
-theme_set(theme_void()) 
+theme_set(theme_void())
 
-#carregar base
+
 #nome dos municipios
 municipio <- read_excel("base/RAIS_estabelecimento_layout2018e2019.xlsx",
                         sheet = "municipio", 
@@ -102,6 +104,11 @@ educacao <- read_excel("base/educacao.xlsx",
 colnames(educacao) <- c("id","fundamental","medio","superior")
 educacao$id <- substr(educacao$id,0,6) |> as.numeric()
 
+query <- "SELECT ano, id_municipio, indice_gini, idhm FROM `basedosdados.mundo_onu_adh.municipio` WHERE ano = 2010"
+idh <- basedosdados::read_sql(query)
+idh$id <- substr(idh$id_municipio,0,6) |> as.numeric()
+idh <- idh |> select(id,idhm,indice_gini)
+
 df <- tb_muni |> select(id=cod,hhi=`2010`)
 df$loghhi <- df$hhi |> log()
 
@@ -125,6 +132,7 @@ df <- sex |>
 
 df <-inner_join(df,idade,by="id")
 df <-inner_join(df,educacao,by="id")
+df <-inner_join(df,idh, by="id")
 
 
 write_fst(df,"base.fst")
