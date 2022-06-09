@@ -16,7 +16,7 @@ Nós inclusive calculamos durante o período de 2020-2010 no qual obtemos inform
 
 ## Resultados
 
-Primeiro consegui estimar uma elasticidade negativa entre de 8,6% entre Salário e Concentração de Mercado. Além disso, quando adicionamos controle por tamanho do setor informal no mercado de trabalho vimos que a relação negativa se mantém. E por fim, o resultado mais interesante se da quando multiplicamos os dois regressores e obtemos uma relação positiva que comprova uma outside option para trabalhadores que não estão no setor formal e por isso procuram oportunidades fora do mercado formal de trabalho.
+Primeiro, consegui estimar uma elasticidade negativa de 8,6% entre Salários e Concentração de Mercado. Segundo, quando adicionei controle de tamanho do setor informal no mercado de trabalho, a relação negativa se manteve. Por fim, o resultado mais interessante ocorreu quando multipliquei os dois regressores e obtive uma relação positiva, que comprova uma outside option para trabalhadores que não estão no setor formal e, por isso, procuram oportunidades fora do mercado de trabalho formal.
 
 
 ![Resultados](https://latex2image-output.s3.amazonaws.com/img-AzHrezP5stv7.jpg)
