@@ -10,7 +10,7 @@ O impacto de salários para trabalhadores é um dos objetos de pesquisa econômi
 
 Assim, utilizo uma medida construída por Herfindahl-Hirschman Index (HHI) para Concentração no Mercado de Trabalho utilizando os dados da RAIS e comparando com dados do CENSO. Para entender os limites das definições para mercados concentrados, note que um mercado com quatro firmas e com frações de mercado iguais tem um HHI igual a 2500.
 
-Calculei durante o período de 2020-2010 no qual obtive informação de concentração para 5564 microrregiões. Em 2020, na média, os mercados de trabalho por microrregiões não são altamente concentrados: o HHI médio é 2433, no qual equivale a 4.11 firmas contratantes com participação igual no mercado do total de vínculos ativos registrados.
+Calculei durante o período de 2020-2010 no qual obtive informação de concentração para 5564 municípios. Em 2020, na média, os mercados de trabalho por microrregiões não são altamente concentrados: o HHI médio é 2433, no qual equivale a 4.11 firmas contratantes com participação igual no mercado do total de vínculos ativos registrados.
 
 ![imagem](image3.png)
 
