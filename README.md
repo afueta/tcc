@@ -6,7 +6,7 @@
 
 ### Projeto de dissertação - Concentração no Mercado de Trabalho
 
-O impacto de salários para trabalhadores é um dos objetos de pesquisa econômica e são pesquisas ativas pela popularização de estudos do poder de monopsônio das empresas sobre o mercado de trabalho. Nesse trabalho buscamos trazer luz para fatos estilizados teóricos de acordo com dados do Brasil, além de buscar impactos da concentração no mercado de trabalho dentro das especifidades do Brasil.
+O impacto de salários para trabalhadores é um dos objetos de pesquisa econômica e são pesquisas ativas pela popularização de estudos do poder de monopsônio das empresas sobre o mercado de trabalho. Nesse trabalho busco trazer luz para fatos estilizados teóricos de acordo com dados do Brasil, além de buscar impactos da concentração no mercado de trabalho dentro das especifidades do Brasil.
 
 Assim, utilizo uma medida construída por Herfindahl-Hirschman Index (HHI) para Concentração no Mercado de Trabalho utilizando os dados da RAIS e comparando com dados do CENSO. Para entender os limites das definições para mercados concentrados, note que um mercado com quatro firmas e com frações de mercado iguais tem um HHI igual a 2500.
 
