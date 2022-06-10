@@ -20,3 +20,8 @@ Primeiro, consegui estimar uma elasticidade negativa de 8,6% entre Salários e C
 
 
 ![Resultados](https://latex2image-output.s3.amazonaws.com/img-AzHrezP5stv7.jpg)
+
+## Extensões
+
+Os arquivos possuem extenssões do modelo básico em que considerei outros controles do município como gênero, tamanho do munícipio, IDH e outros. Além disso, construi uma medida alternativa de concentração do mercado de trabalho com informalidade endógena e mostro que os resultados iniciais se mantém.
+
