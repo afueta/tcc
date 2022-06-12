@@ -12,7 +12,7 @@ dados <- basedosdados::read_sql(query)
 tabela <- read_excel("base/tabela.xlsx")
 
 wage <-read_excel("censo/total.xlsx", col_types = c("text","numeric", "numeric", "numeric", "text", "numeric", "numeric", "numeric", "numeric"))
-wage$id <- substr(wage$cod,0,7) |> as.numeric()
+wage$id <- substr(wage$cod,0,7) #|> as.numeric()
 
 
 # HHI para vetor
@@ -22,9 +22,11 @@ hhi_value_informal <- function(x,y){
   
   informal <- sum(x)*(a)
   total <- sum(x)*(1+a)
+  hhinformal <- (100/total)^2
+  
   x <- x/(total)
   for (i in 1:length(x)) {x[i] <- (x[i]*(100))^2}
-  sum(x) + informal/total
+  sum(x) + informal*hhinformal
 }
 
 hhi_value <- function(x){
@@ -43,7 +45,6 @@ hhi <- function(x){
     .^2 %>%
     sum()
 }
-wage$`Conta própria`
 
 
 tb <- dados |>
@@ -65,8 +66,10 @@ model1 <- lm(logwage ~ logHHI , df)
 model2 <- lm(logwage ~ logHHIi , df)
 model3 <- lm(logwageCLT ~ logHHI , df)
 model4 <- lm(logwageCLT ~ logHHIi , df)
-model5 <- lm(logwageSclt ~ logHHIi , df)
-model6 <- lm(logwageCP ~ logHHIi , df)
+model5 <- lm(logwageSclt ~ logHHI , df)
+model6 <- lm(logwageSclt ~ logHHIi , df)
+model7 <- lm(logwageCP ~ logHHI , df)
+model8 <- lm(logwageCP ~ logHHIi , df)
 
-stargazer::stargazer(model1,model2,model3,model4,model5,model6)
+stargazer::stargazer(model1,model2,model3,model4,model5,model6,model7,model8)
 
