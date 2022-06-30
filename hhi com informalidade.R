@@ -73,3 +73,12 @@ model8 <- lm(logwageCP ~ logHHIi , df)
 
 stargazer::stargazer(model1,model2,model3,model4,model5,model6,model7,model8)
 
+
+summary(df)
+var(tb)
+summary(tb)
+
+plot(df$logHHIi,df$logHHI)
+abline(0,1)
+plot(tb$HHI_i,tb$HHI)
+

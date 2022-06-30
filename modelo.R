@@ -15,6 +15,7 @@ model4 <- lm(logwageCLT ~ loghhi + `Conta Própria + sem CLT` + loghhi*`Conta Pr
              + logpop + idhm, df)
 summary(model4)
 
+
 stargazer(model1,model2,model3)
 
 model1 <- lm(logwage ~ loghhi , df)

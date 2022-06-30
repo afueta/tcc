@@ -22,12 +22,6 @@ wage <- total |>
   select(id_municipio=cod,Total,wageCLT = `Com carteira de trabalho assinada`) |>
   mutate(logwage=log(Total),logwageCLT=log(wageCLT))
 
-wage <- read_excel("base/wage.xlsx", col_types = c("text", 
-                                                   "text", "numeric", "numeric", "numeric", 
-                                                   "numeric", "numeric", "numeric", "numeric", 
-                                                   "numeric", "numeric", "numeric"), skip = 4)
-
-wage$id <- wage$...1
 
 # HHI para vetor
 hhi_value <- function(x){
