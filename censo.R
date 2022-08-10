@@ -107,7 +107,7 @@ educacao$id <- substr(educacao$id,0,6) |> as.numeric()
 query <- "SELECT ano, id_municipio, indice_gini, idhm FROM `basedosdados.mundo_onu_adh.municipio` WHERE ano = 2010"
 idh <- basedosdados::read_sql(query)
 idh$id <- substr(idh$id_municipio,0,6) |> as.numeric()
-idh <- idh |> select(id,idhm,indice_gini)
+idh <- idh |> select(id,idhm,indice_gini,id_municipio)
 
 df <- tb_muni |> select(id=cod,hhi=`2010`)
 df$loghhi <- df$hhi |> log()
@@ -133,6 +133,7 @@ df <- sex |>
 df <-inner_join(df,idade,by="id")
 df <-inner_join(df,educacao,by="id")
 df <-inner_join(df,idh, by="id")
+
 
 
 write_fst(df,"base.fst")
